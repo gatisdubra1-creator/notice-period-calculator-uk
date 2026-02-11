@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gatisdubra1-creator.github.io/notice-period-calculator-uk/sitemap.xml
