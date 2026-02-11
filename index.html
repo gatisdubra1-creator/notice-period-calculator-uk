@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Notice Period Calculator UK (Resignation) – Last Working Day</title>
+  <meta name="description" content="Calculate your UK resignation notice period and last working day using statutory minimums. Optionally include your contract notice (weeks) for a more accurate estimate." />
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #111; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 18px 60px; }
+    h1 { font-size: 30px; margin: 0 0 8px; }
+    .sub { color:#444; margin: 0 0 18px; line-height: 1.4; }
+    .card { border: 1px solid #e6e6e6; border-radius: 14px; padding: 18px; margin-top: 16px; }
+    label { display:block; font-weight: 600; margin: 12px 0 6px; }
+    input { width: 100%; padding: 12px; border: 1px solid #d6d6d6; border-radius: 10px; font-size: 16px; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 720px){ .row { grid-template-columns: 1fr; } }
+    button { margin-top: 14px; padding: 12px 14px; border-radius: 10px; border: 1px solid #111; background:#111; color:#fff; font-size: 16px; cursor: pointer; }
+    button:disabled { opacity: .5; cursor:not-allowed; }
+    .note { color:#555; font-size: 14px; line-height: 1.5; margin-top: 12px; }
+    .error { color:#b00020; font-weight: 600; margin-top: 10px; }
+    .result { margin-top: 14px; }
+    .pill { display:inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid #e6e6e6; background:#fafafa; margin-right: 8px; margin-top: 6px; }
+    .small { font-size: 13px; color:#666; }
+    .hr { height:1px; background:#eee; margin: 16px 0; }
+    .faq h2 { margin: 0 0 8px; font-size: 18px; }
+    .faq details { border-top: 1px solid #eee; padding: 10px 0; }
+    .faq summary { cursor:pointer; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Notice Period Calculator UK</h1>
+    <p class="sub">Calculate your resignation notice period and estimated last working day (UK statutory minimums + optional contract notice).</p>
+
+    <!-- SEO intro card -->
+    <div class="card">
+      <h2 style="margin:0 0 8px; font-size:20px;">UK Notice Period Calculator (Resignation)</h2>
+      <p class="note" style="margin:0 0 10px;">
+        If you're resigning in the UK, your notice period is usually based on statutory minimum rules
+        (and sometimes your employment contract). This calculator helps you estimate the required notice
+        and your expected last working day.
+      </p>
+      <p class="note" style="margin:0;">
+        Enter your employment start date and the date you gave notice. If your contract requires a longer notice period,
+        enter it in weeks — the calculator will use the longer value.
+      </p>
+    </div>
+
+    <!-- Calculator card -->
+    <div class="card">
+      <div class="row">
+        <div>
+          <label for="startDate">Employment start date</label>
+          <input id="startDate" type="date" />
+        </div>
+        <div>
+          <label for="noticeDate">Notice given date</label>
+          <input id="noticeDate" type="date" />
+        </div>
+      </div>
+
+      <label for="contractWeeks">Contract notice period (weeks) — optional</label>
+      <input id="contractWeeks" type="number" inputmode="numeric" min="0" step="1" placeholder="Leave blank to use statutory minimum" />
+
+      <button id="calcBtn">Calculate</button>
+
+      <div id="err" class="error" style="display:none;"></div>
+
+      <div id="out" class="result" style="display:none;">
+        <div class="hr"></div>
+        <div>
+          <span class="pill"><b>Final notice:</b> <span id="finalWeeks"></span> week(s)</span>
+          <span class="pill"><b>Estimated last working day:</b> <span id="lastDay"></span></span>
+        </div>
+        <p class="note" id="explain"></p>
+        <p class="small">
+          Notes: This calculator uses UK statutory minimums (Employment Rights Act). Your contract may require a longer notice period.
+          Some roles or agreements may have special terms. When in doubt, check your contract or get HR/legal advice.
+        </p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="card faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>How is statutory notice calculated in the UK?</summary>
+        <div class="note">
+          Statutory minimum notice is usually:
+          <ul>
+            <li>At least 1 week if employed between 1 month and 2 years</li>
+            <li>After 2 years: 1 week per full year of service (up to 12 weeks)</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>What if my contract notice is longer?</summary>
+        <div class="note">
+          If your contract says a longer notice period than statutory minimum, you typically follow the contract.
+          This tool lets you enter your contract notice (weeks) to reflect that.
+        </div>
+      </details>
+      <details>
+        <summary>Is the “last working day” always exact?</summary>
+        <div class="note">
+          It’s an estimate based on weeks added to your notice date. Real last working day can depend on
+          payroll cycles, holidays, company policy, or agreed early release.
+        </div>
+      </details>
+
+      <details>
+        <summary>Can my employer change my notice period?</summary>
+        <div class="note">
+          Notice terms are usually set by your contract and statutory minimums. Changes typically require agreement.
+          If you’re unsure, check your contract and speak with HR.
+        </div>
+      </details>
+
+      <details>
+        <summary>Do weekends and holidays count during a notice period?</summary>
+        <div class="note">
+          A notice period is normally measured in calendar time (weeks). Your actual last working day may vary depending on
+          company policy, agreed leave, or early release.
+        </div>
+      </details>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="card">
+      <h2 style="margin:0 0 8px; font-size:18px;">Disclaimer</h2>
+      <p class="note" style="margin:0;">
+        This tool provides an estimate based on UK statutory minimum notice rules and the information you enter.
+        It is not legal advice. Your contract, role, or agreement may require different terms.
+        Always check your employment contract and consider professional advice if needed.
+      </p>
+    </div>
+  </div>
+
+<script>
+  function parseDate(id) {
+    const v = document.getElementById(id).value;
+    if (!v) return null;
+    const d = new Date(v + "T00:00:00");
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatDate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function addDays(date, days) {
+    const d = new Date(date.getTime());
+    d.setDate(d.getDate() + days);
+    return d;
+  }
+
+  function fullYearsBetween(start, end) {
+    let years = end.getFullYear() - start.getFullYear();
+    const anniversary = new Date(start.getFullYear() + years, start.getMonth(), start.getDate());
+    if (end < anniversary) years -= 1;
+    return Math.max(0, years);
+  }
+
+  function statutoryNoticeWeeksUK(startDate, noticeDate) {
+    const msInDay = 24 * 60 * 60 * 1000;
+    const daysEmployed = Math.floor((noticeDate - startDate) / msInDay);
+
+    if (daysEmployed < 0) return { weeks: null, reason: "Notice date is before start date." };
+
+    // MVP: use 30 days as a simple "one month" threshold
+    if (daysEmployed < 30) return { weeks: 0, reason: "Under 1 month employed: statutory minimum may not apply; check your contract." };
+
+    const years = fullYearsBetween(startDate, noticeDate);
+
+    if (years < 2) return { weeks: 1, reason: "Employed 1 month to under 2 years: statutory minimum is 1 week." };
+
+    const w = Math.min(years, 12);
+    return { weeks: w, reason: `Employed ${years} full year(s): statutory minimum is 1 week per full year (capped at 12).` };
+  }
+
+  function showError(msg) {
+    const el = document.getElementById("err");
+    el.textContent = msg;
+    el.style.display = "block";
+    document.getElementById("out").style.display = "none";
+  }
+
+  function clearError() {
+    const el = document.getElementById("err");
+    el.textContent = "";
+    el.style.display = "none";
+  }
+
+  document.getElementById("calcBtn").addEventListener("click", () => {
+    clearError();
+
+    const start = parseDate("startDate");
+    const notice = parseDate("noticeDate");
+    const contractStr = document.getElementById("contractWeeks").value.trim();
+    const contractWeeks = contractStr === "" ? null : Number(contractStr);
+
+    if (!start || !notice) return showError("Please enter both your employment start date and the date you gave notice.");
+    if (notice < start) return showError("Notice given date cannot be before your employment start date.");
+    if (contractWeeks !== null && (!Number.isFinite(contractWeeks) || contractWeeks < 0 || !Number.isInteger(contractWeeks))) {
+      return showError("Contract notice period must be a whole number of weeks (0 or more).");
+    }
+
+    const stat = statutoryNoticeWeeksUK(start, notice);
+    if (stat.weeks === null) return showError(stat.reason);
+
+    let finalW = stat.weeks;
+    let explain = stat.reason;
+
+    if (contractWeeks !== null && contractWeeks > finalW) {
+      finalW = contractWeeks;
+      explain = `${stat.reason} Your contract notice (${contractWeeks} week(s)) is longer, so this estimate uses the contract notice.`;
+    } else if (contractWeeks !== null) {
+      explain = `${stat.reason} Your contract notice (${contractWeeks} week(s)) is not longer than statutory, so this estimate uses statutory minimum.`;
+    }
+
+    const last = addDays(notice, finalW * 7);
+
+    document.getElementById("finalWeeks").textContent = String(finalW);
+    document.getElementById("lastDay").textContent = formatDate(last);
+    document.getElementById("explain").textContent = explain;
+
+    document.getElementById("out").style.display = "block";
+  });
+</script>
+</body>
+</html>
